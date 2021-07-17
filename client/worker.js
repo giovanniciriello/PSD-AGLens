@@ -11,10 +11,10 @@ const client = new Client(config);
 client.subscribe('check-frame-availability', checkFrameAvailability);
 
 // susbscribe to the topic: 'create-frame-order'
-client.subscribe('create-frame-order', createFrameOrder);
+//client.subscribe('create-frame-order', createFrameOrder);
 
 // susbscribe to the topic: 'create-shipping-order'
-client.subscribe('create-shipping-order', createShippingOrder);
+//client.subscribe('create-shipping-order', createShippingOrder);
 
 // susbscribe to the topic: 'create-invoice'
-client.subscribe('create-invoice', createInvoice);
+//client.subscribe('create-invoice', createInvoice);

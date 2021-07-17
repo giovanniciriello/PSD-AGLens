@@ -10,7 +10,7 @@ app.get('/framesupplier/check-frame-availability/:frameId', checkFrameAvailabili
 
 app.post('/framesupplier/order', createFrameOrder);
 
-app.post('/paclink/order', checkFramecreateShippingOrderAvailability);
+app.post('/paclink/order', createShippingOrder);
 
 app.post('/fattureincloud/invoice', createInvoice);
 
