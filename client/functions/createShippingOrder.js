@@ -4,7 +4,7 @@ var http = new HttpClient();
 
 const { baseUrls } = require('../config');
 
-exports.checkFrameAvailability = async ({ task, taskService }) => {
+exports.createShippingOrder = async ({ task, taskService }) => {
 
   console.log('controllo disponibilità frame n. ', task.variables.get('frame_id'));
 
