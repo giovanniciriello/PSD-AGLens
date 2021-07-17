@@ -1,0 +1,17 @@
+{
+  "name": "aglens-client",
+  "version": "1.0.0",
+  "main": "worker.js",
+  "author": "Bovo Ciriello",
+  "license": "MIT",
+  "dependencies": {
+    "camunda-external-task-client-js": "^2.1.0",
+    "node-rest-client": "^3.1.0"
+  },
+  "devDependencies": {
+    "open": "^8.2.1"
+  },
+  "scripts": {
+    "start": "node worker.js"
+  }
+}
