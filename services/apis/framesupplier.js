@@ -1,7 +1,8 @@
 exports.checkFrameAvailability = (req, res) => {
   res.json({
     success: true,
-    available: true
+    available: false,
+    days_to_deliver: 10
    });
 }
 

@@ -11,11 +11,11 @@ exports.checkFrameAvailability = async ({ task, taskService }) => {
   console.log('controllo disponibilità frame n. ', task.variables.get('frame_id'));
 
   http.get(baseUrls.frameService + 'check-frame-availability/'+ task.variables.get('frame_id'), async (data) => {
-    console.log('risultato', data.available);
-
     // set a process variable 'availableFrame'
+
     const processVariables = new Variables();
-    processVariables.set("availableFrame", data.available);
+    processVariables.set("availability_supplier", data.available);
+    processVariables.set("days_to_deliver", data.days_to_deliver);
 
     // Complete the task
     await taskService.complete(task, processVariables);
