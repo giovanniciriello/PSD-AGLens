@@ -1,5 +1,9 @@
 const { Client, logger } = require('camunda-external-task-client-js');
 const { checkFrameAvailability } = require('./functions/check-frame-availability');
+const { createFrameOrder } = require('./functions/create-frame-order');
+const { createShippingOrder } = require('./functions/create-shipping-order');
+const { createInvoice } = require('./functions/create-invoice');
+
 const open = require('open');
 
 const config = { baseUrl: 'http://localhost:8080/engine-rest', use: logger, asyncResponseTimeout: 10000 };
@@ -11,10 +15,10 @@ const client = new Client(config);
 client.subscribe('check-frame-availability', checkFrameAvailability);
 
 // susbscribe to the topic: 'create-frame-order'
-//client.subscribe('create-frame-order', createFrameOrder);
+client.subscribe('create-frame-order', createFrameOrder);
 
 // susbscribe to the topic: 'create-shipping-order'
-//client.subscribe('create-shipping-order', createShippingOrder);
+client.subscribe('create-shipping-order', createShippingOrder);
 
 // susbscribe to the topic: 'create-invoice'
-//client.subscribe('create-invoice', createInvoice);
+client.subscribe('create-invoice', createInvoice);

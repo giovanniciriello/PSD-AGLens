@@ -8,11 +8,11 @@ const { createInvoice } = require('./apis/fattureincloud');
 
 app.get('/framesupplier/check-frame-availability/:frameId', checkFrameAvailability);
 
-app.post('/framesupplier/order', createFrameOrder);
+app.post('/framesupplier/create-frame-order', createFrameOrder);
 
-app.post('/paclink/order', createShippingOrder);
+app.post('/paclink/create-shipping-order', createShippingOrder);
 
-app.post('/fattureincloud/invoice', createInvoice);
+app.post('/fattureincloud/create-invoice', createInvoice);
 
 app.listen(port, () => {
   console.log(`AG Lens services listening at http://localhost:${port}`)
