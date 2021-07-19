@@ -1,6 +1,6 @@
 exports.createInvoice = (req, res) => {
   res.json({
-    success: true,
-    available: true
+    message: 'Order ok!',
+    invoice_link:'http://www.dammiinvoice.it'
    });
 }

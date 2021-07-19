@@ -1,0 +1,319 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "AGLens external API",
+      "description": "All external API used by order process in AGLens system",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Local server (for testing)"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Frame supplier",
+        "description": "endpoints"
+      },
+      {
+        "name": "Packlink",
+        "description": "endpoints"
+      },
+      {
+        "name": "Fattureincloud",
+        "description": "endpoints"
+      }
+    ],
+    "paths": {
+      "/framesupplier/check-frame-availability/{frameId}": {
+        "get": {
+          "summary": "Returns frame's availability.",
+          "tags": [
+            "Frame supplier"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "frameId",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/FrameAvailabilityResponse"
+                  }
+                }
+              }
+            },
+            "503": {
+              "description": "Service Unavailable"
+            }
+          }
+        }
+      },
+      "/framesupplier/create-frame-order": {
+        "post": {
+          "summary": "Create a new frame's order.",
+          "tags": [
+            "Frame supplier"
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateFrameOrderRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CreateFrameOrderResponse"
+                  }
+                }
+              }
+            },
+            "503": {
+              "description": "Service Unavailable"
+            }
+          }
+        }
+      },
+      "/paclink/create-shipping-order": {
+        "post": {
+          "summary": "Create a new shipping order.",
+          "tags": [
+            "Packlink"
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateShippingOrderRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CreateShippingOrderResponse"
+                  }
+                }
+              }
+            },
+            "503": {
+              "description": "Service Unavailable"
+            }
+          }
+        }
+      },
+      "/fattureincloud/create-invoice": {
+        "post": {
+          "summary": "Create a new shipping order.",
+          "tags": [
+            "Fattureincloud"
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateInvoiceRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CreateInvoiceResponse"
+                  }
+                }
+              }
+            },
+            "503": {
+              "description": "Service Unavailable"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "FrameAvailabilityResponse": {
+          "type": "object",
+          "required": [
+            "available",
+            "days_to_deliver"
+          ],
+          "properties": {
+            "available": {
+              "type": "string",
+              "description": "Says if the frame is available"
+            },
+            "days_to_deliver": {
+              "type": "string",
+              "description": "Says the number of days that the supplier need for the frame's delivery"
+            }
+          },
+          "example": {
+            "available": true,
+            "days_to_deliver": 5
+          }
+        },
+        "CreateFrameOrderRequest": {
+          "type": "object",
+          "required": [
+            "frame_id",
+            "quantity"
+          ],
+          "properties": {
+            "frame_id": {
+              "type": "string",
+              "description": "Frame id"
+            },
+            "quantity": {
+              "type": "integer",
+              "description": "Quantity order for that frame id"
+            }
+          },
+          "example": {
+            "frame_id": 1234,
+            "quantity": 23
+          }
+        },
+        "CreateFrameOrderResponse": {
+          "type": "object",
+          "required": [
+            "message"
+          ],
+          "properties": {
+            "message": {
+              "type": "string",
+              "description": "Message with the information of the order"
+            }
+          },
+          "example": {
+            "message": "Order ok!"
+          }
+        },
+        "CreateShippingOrderRequest": {
+          "type": "object",
+          "required": [
+            "height",
+            "width",
+            "depth",
+            "weight",
+            "address"
+          ],
+          "properties": {
+            "height": {
+              "type": "integer",
+              "description": "Height pack"
+            },
+            "width": {
+              "type": "integer",
+              "description": "width pack"
+            },
+            "depth": {
+              "type": "integer",
+              "description": "depth pack"
+            },
+            "weight": {
+              "type": "integer",
+              "description": "weight pack"
+            },
+            "address": {
+              "type": "string",
+              "description": "Address to send the pack"
+            }
+          },
+          "example": {
+            "height": 10,
+            "width": 5,
+            "depth": 6,
+            "weight": 2,
+            "address": "via Cavalleggeri Treviso, 13/c"
+          }
+        },
+        "CreateShippingOrderResponse": {
+          "type": "object",
+          "required": [
+            "message"
+          ],
+          "properties": {
+            "message": {
+              "type": "string",
+              "description": "Message with the information of the shipping order"
+            }
+          },
+          "example": {
+            "message": "Order ok!"
+          }
+        },
+        "CreateInvoiceRequest": {
+          "type": "object",
+          "required": [
+            "optician_id",
+            "price"
+          ],
+          "properties": {
+            "optician_id": {
+              "type": "string",
+              "description": "Optician id"
+            },
+            "price": {
+              "type": "integer",
+              "description": "Total price to invoice"
+            }
+          },
+          "example": {
+            "optician_id": "Op1",
+            "price": 247
+          }
+        },
+        "CreateInvoiceResponse": {
+          "type": "object",
+          "required": [
+            "message",
+            "invoice_link"
+          ],
+          "properties": {
+            "message": {
+              "type": "string",
+              "description": "Message with the information of the shipping order"
+            },
+            "invoice_link": {
+              "type": "string",
+              "description": "Invoice link"
+            }
+          },
+          "example": {
+            "message": "Order ok!",
+            "invoice_link": "http://www.dammiinvoice.it"
+          }
+        }
+      }
+    }
+  }

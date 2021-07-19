@@ -1,10 +1,14 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const app = express();
+const swaggerUI = require('swagger-ui-express');
+const swaggerDocument= require('./swagger.json');
+const port = 3000;
 
 const { checkFrameAvailability, createFrameOrder } = require('./apis/framesupplier');
 const { createShippingOrder } = require('./apis/paclink');
 const { createInvoice } = require('./apis/fattureincloud');
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 app.get('/framesupplier/check-frame-availability/:frameId', checkFrameAvailability);
 
