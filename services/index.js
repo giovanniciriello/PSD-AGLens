@@ -1,5 +1,7 @@
 const express = require('express');
+var bodyParser = require('body-parser');
 const app = express();
+
 const swaggerUI = require('swagger-ui-express');
 const swaggerDocument= require('./swagger.json');
 const port = 3000;
@@ -7,6 +9,8 @@ const port = 3000;
 const { checkFrameAvailability, createFrameOrder } = require('./apis/framesupplier');
 const { createShippingOrder } = require('./apis/paclink');
 const { createInvoice } = require('./apis/fattureincloud');
+
+app.use(bodyParser.json());
 
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
