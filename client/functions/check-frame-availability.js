@@ -12,7 +12,7 @@ exports.checkFrameAvailability = async ({ task, taskService }) => {
   http.get(baseUrls.frameService + 'check-frame-availability/' + task.variables.get('frame_id'), async (data) => {
     const processVariables = new Variables()
       .set('availability_supplier', data.available)
-      .set('days_to_deliver', data.days_to_deliver);
+      .set('days_to_deliver', data.daysToDeliver);
 
     // Complete the task
     await taskService.complete(task, processVariables);
