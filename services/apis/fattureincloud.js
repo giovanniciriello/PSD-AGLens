@@ -39,8 +39,12 @@ exports.createInvoice = (req, res) => {
   };
   niceInvoice(invoiceDetail, './fatture_pdf/' + req.body.optician_id + '.pdf');
 
+  var link = "http://localhost:3000/" + "public/" + req.body.optician_id + ".pdf";
+
+  console.log(`Invoice Link -> ${link}`);
+
   res.json({
     message: '✅ Invoice successfull generated!',
-    invoice_link: 'http://www.dammiinvoice.it',
+    invoice_link: link,
   });
 };

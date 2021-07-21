@@ -14,6 +14,10 @@ app.use(bodyParser.json());
 
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
+app.get('/public/:file', (req, res) => {
+  res.sendFile('/fatture_pdf/'+req.params.file, { root: __dirname });
+});
+
 app.get('/framesupplier/check-frame-availability/:frameId', checkFrameAvailability);
 
 app.post('/framesupplier/create-frame-order', createFrameOrder);
