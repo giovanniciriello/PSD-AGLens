@@ -39,11 +39,12 @@ exports.createInvoice = (req, res) => {
   };
   niceInvoice(invoiceDetail, './fatture_pdf/' + req.body.optician_id + '.pdf');
 
-  var link = "http://localhost:3000/" + "public/" + req.body.optician_id + ".pdf";
+  var link = 'http://localhost:3000/' + 'public/' + req.body.optician_id + '.pdf';
 
   console.log(`Invoice Link -> ${link}`);
 
   res.json({
+    success: true,
     message: '✅ Invoice successfull generated!',
     invoice_link: link,
   });

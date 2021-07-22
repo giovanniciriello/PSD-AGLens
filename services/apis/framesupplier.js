@@ -16,7 +16,8 @@ exports.checkFrameAvailability = (req, res) => {
 
 exports.createFrameOrder = (req, res) => {
   res.json({
-    message: 'Order ok!',
+    success: true,
+    message: '✅ Order created successfully',
   });
 };
 
