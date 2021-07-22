@@ -49,3 +49,10 @@ exports.createInvoice = (req, res) => {
     invoice_link: link,
   });
 };
+
+exports.getInvoiceById = (req, res) => {
+  res.sendFile('/fatture_pdf/' + req.params.file, { root: __dirname });
+};
+
+exports.updateInvoice = () => {};
+exports.deleteInvoice = () => {};
