@@ -9,7 +9,7 @@ const { baseUrls } = require('../config');
 exports.checkFrameAvailability = async ({ task, taskService }) => {
   console.log(`Checking for frame availability in supplier warehouse for item ${task.variables.get('frame_id')}`);
 
-  http.get(baseUrls.frameService + 'check-frame-availability/' + task.variables.get('frame_id'), async (data) => {
+  http.get(baseUrls.frameService + 'availability/' + task.variables.get('frame_id'), async (data) => {
     const processVariables = new Variables();
 
     processVariables.set('availability_supplier', data.available);

@@ -11,14 +11,14 @@ tags:
   - name: Frame supplier
     description: endpoints
 
-  - name: Pack link
-    description: endpoints
+  - name: Packlink
+    description: Shipping Supplier
 
-  - name: Fattureincloud
-    description: endpoints
+  - name: Fatture in cloud
+    description: Invoice System
 
 paths:
-  /framesupplier/check-frame-availability/{frameId}:
+  /framesupplier/availability/{frameId}:
     get:
       summary: Returns frame's availability.
       tags:
@@ -39,7 +39,7 @@ paths:
         '503':
           description: Service Unavailable
 
-  /framesupplier/create-frame-order:
+  /framesupplier/order:
     post:
       summary: Create a new frame's order.
       tags:
@@ -60,7 +60,7 @@ paths:
         '503':
           description: Service Unavailable
 
-  /paclink/create-shipping-order:
+  /paclink/order:
     post:
       summary: Create a new shipping order.
       tags:
@@ -81,7 +81,7 @@ paths:
         '503':
           description: Service Unavailable
 
-  /fattureincloud/create-invoice:
+  /fattureincloud/invoice:
     post:
       summary: Create a new shipping order.
       tags:

@@ -14,19 +14,19 @@
   "tags": [
     {
       "name": "Frame supplier",
-      "description": "endpoints"
+      "description": "Frame supplier"
     },
     {
       "name": "Packlink",
-      "description": "endpoints"
+      "description": "Shipping Company"
     },
     {
       "name": "Fattureincloud",
-      "description": "endpoints"
+      "description": "Invoice System"
     }
   ],
   "paths": {
-    "/framesupplier/check-frame-availability/{frameId}": {
+    "/framesupplier/availability/{frameId}": {
       "get": {
         "summary": "Returns frame's availability.",
         "tags": [
@@ -59,7 +59,7 @@
         }
       }
     },
-    "/framesupplier/create-frame-order": {
+    "/framesupplier/order": {
       "post": {
         "summary": "Create a new frame's order.",
         "tags": [
@@ -92,7 +92,7 @@
         }
       }
     },
-    "/paclink/create-shipping-order": {
+    "/paclink/order": {
       "post": {
         "summary": "Create a new shipping order.",
         "tags": [
@@ -125,7 +125,7 @@
         }
       }
     },
-    "/fattureincloud/create-invoice": {
+    "/fattureincloud/invoice": {
       "post": {
         "summary": "Create a new shipping order.",
         "tags": [
