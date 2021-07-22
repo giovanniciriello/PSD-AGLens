@@ -6,17 +6,16 @@ info:
 servers:
   - url: http://localhost:3000
     description: Local server (for testing)
-    
+
 tags:
   - name: Frame supplier
     description: endpoints
-    
-  - name: Packlink
-    description: endpoints
-    
-  - name: Fattureincloud
+
+  - name: Pack link
     description: endpoints
 
+  - name: Fattureincloud
+    description: endpoints
 
 paths:
   /framesupplier/check-frame-availability/{frameId}:
@@ -39,7 +38,7 @@ paths:
                 $ref: '#/components/schemas/FrameAvailabilityResponse'
         '503':
           description: Service Unavailable
-                
+
   /framesupplier/create-frame-order:
     post:
       summary: Create a new frame's order.
@@ -48,8 +47,8 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:     
-            schema:       
+          application/json:
+            schema:
               $ref: '#/components/schemas/CreateFrameOrderRequest'
       responses:
         '201':
@@ -60,7 +59,7 @@ paths:
                 $ref: '#/components/schemas/CreateFrameOrderResponse'
         '503':
           description: Service Unavailable
-  
+
   /paclink/create-shipping-order:
     post:
       summary: Create a new shipping order.
@@ -69,8 +68,8 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:     
-            schema:       
+          application/json:
+            schema:
               $ref: '#/components/schemas/CreateShippingOrderRequest'
       responses:
         '201':
@@ -80,8 +79,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/CreateShippingOrderResponse'
         '503':
-          description: Service Unavailable        
-                
+          description: Service Unavailable
+
   /fattureincloud/create-invoice:
     post:
       summary: Create a new shipping order.
@@ -90,8 +89,8 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:     
-            schema:       
+          application/json:
+            schema:
               $ref: '#/components/schemas/CreateInvoiceRequest'
       responses:
         '201':
@@ -102,7 +101,7 @@ paths:
                 $ref: '#/components/schemas/CreateInvoiceResponse'
         '503':
           description: Service Unavailable
-                
+
 components:
   schemas:
     FrameAvailabilityResponse:
@@ -120,7 +119,7 @@ components:
       example:
         available: true
         days_to_deliver: 5
-      
+
     CreateFrameOrderRequest:
       type: object
       required:
@@ -136,7 +135,7 @@ components:
       example:
         frame_id: 1234
         quantity: 23
-      
+
     CreateFrameOrderResponse:
       type: object
       required:
@@ -147,13 +146,13 @@ components:
           description: Message with the information of the order
       example:
         message: Order ok!
-        
+
     CreateShippingOrderRequest:
       type: object
       required:
         - height
-        - width 
-        - depth 
+        - width
+        - depth
         - weight
         - address
       properties:
@@ -178,7 +177,7 @@ components:
         depth: 6
         weight: 2
         address: via Cavalleggeri Treviso, 13/c
-      
+
     CreateShippingOrderResponse:
       type: object
       required:
@@ -189,11 +188,11 @@ components:
           description: Message with the information of the shipping order
       example:
         message: Order ok!
-    
+
     CreateInvoiceRequest:
       type: object
       required:
-        - optician_id 
+        - optician_id
         - price
       properties:
         optician_id:
@@ -207,7 +206,7 @@ components:
         surname: Bovo
         optician_id: Op1
         price: 247
-      
+
     CreateInvoiceResponse:
       type: object
       required:
