@@ -1,6 +1,7 @@
 const niceInvoice = require('nice-invoice');
 
 exports.createInvoice = (req, res) => {
+  var id = Math.floor(Math.random() * 100000);
   var price = parseInt(req.body.price);
   const invoiceDetail = {
     shipping: {
@@ -37,22 +38,33 @@ exports.createInvoice = (req, res) => {
       due_date: '23 August 2021',
     },
   };
-  niceInvoice(invoiceDetail, './fatture_pdf/' + req.body.optician_id + '.pdf');
+  niceInvoice(invoiceDetail, './apis/fatture_pdf/' + id + '.pdf');
 
-  var link = 'http://localhost:3000/' + 'public/' + req.body.optician_id + '.pdf';
-
-  console.log(`Invoice Link -> ${link}`);
+  console.log(`Invoice id -> ${id}`);
 
   res.json({
     success: true,
-    message: '✅ Invoice successfull generated!',
-    invoice_link: link,
+    id: id,
+    message: '✅ Invoice successfull generated!'
   });
 };
 
 exports.getInvoiceById = (req, res) => {
-  res.sendFile('/fatture_pdf/' + req.params.file, { root: __dirname });
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', 'attachment; filename='+ req.query.invoiceId + '.pdf');
+  res.sendFile('/fatture_pdf/' + req.query.invoiceId + '.pdf', { root: __dirname });
 };
 
-exports.updateInvoice = () => {};
-exports.deleteInvoice = () => {};
+exports.updateInvoice = (req, res) => {
+  res.json({
+    success: true,
+    id: req.query.invoiceId,
+    message: '✅ Update ok!'
+  });
+};
+exports.deleteInvoice = (req, res) => {
+  res.json({
+    success: true,
+    message: '✅ Delete ok!'
+  });
+};

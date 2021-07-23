@@ -14,14 +14,14 @@
   "tags": [
     {
       "name": "Frame supplier",
-      "description": "Frame supplier"
+      "description": "endpoints"
     },
     {
       "name": "Packlink",
-      "description": "Shipping Company"
+      "description": "Shipping Supplier"
     },
     {
-      "name": "Fattureincloud",
+      "name": "Fatture in cloud",
       "description": "Invoice System"
     }
   ],
@@ -129,7 +129,7 @@
       "post": {
         "summary": "Create a new shipping order.",
         "tags": [
-          "Fattureincloud"
+          "Fatture in cloud"
         ],
         "requestBody": {
           "required": true,
@@ -148,6 +148,110 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CreateInvoiceResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      },
+      "get": {
+        "summary": "Returns invoice pdf.",
+        "tags": [
+          "Fatture in cloud"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "invoiceId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A PDF file",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a shipping order.",
+        "tags": [
+          "Fatture in cloud"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "invoiceId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateInvoiceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateInvoiceResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an invoice",
+        "tags": [
+          "Fatture in cloud"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "invoiceId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteInvoiceResponse"
                 }
               }
             }
@@ -296,22 +400,91 @@
       "CreateInvoiceResponse": {
         "type": "object",
         "required": [
-          "message",
-          "invoice_link"
+          "success",
+          "id",
+          "message"
         ],
         "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "true/false"
+          },
+          "id": {
+            "type": "integer",
+            "description": "Invoice id"
+          },
           "message": {
             "type": "string",
             "description": "Message with the information of the shipping order"
-          },
-          "invoice_link": {
-            "type": "string",
-            "description": "Invoice link"
           }
         },
         "example": {
-          "message": "Order ok!",
-          "invoice_link": "http://www.dammiinvoice.it"
+          "success": true,
+          "id": 19743,
+          "message": "Order ok!"
+        }
+      },
+      "UpdateInvoiceRequest": {
+        "type": "object",
+        "required": [
+          "optician_id",
+          "price"
+        ],
+        "properties": {
+          "optician_id": {
+            "type": "string",
+            "description": "Optician id"
+          },
+          "price": {
+            "type": "integer",
+            "description": "Total price to invoice"
+          }
+        },
+        "example": {
+          "optician_id": "Op1",
+          "price": 247
+        }
+      },
+      "UpdateInvoiceResponse": {
+        "type": "object",
+        "required": [
+          "success",
+          "id",
+          "message"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "true/false"
+          },
+          "id": {
+            "type": "integer",
+            "description": "Invoice id"
+          },
+          "message": {
+            "type": "string",
+            "description": "Message with the information of the update order"
+          }
+        },
+        "example": {
+          "success": true,
+          "id": 19743,
+          "message": "Update ok!"
+        }
+      },
+      "DeleteInvoiceResponse": {
+        "type": "object",
+        "required": [
+          "success"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "true/false"
+          }
+        },
+        "example": {
+          "success": true
         }
       }
     }

@@ -19,10 +19,10 @@ app.post('/framesupplier/order', createFrameOrder);
 
 app.post('/paclink/order', createShippingOrder);
 
-app.get('/fattureincloud/invoice/:invoiceId', getInvoiceById);
+app.get('/fattureincloud/invoice/', getInvoiceById);
 app.post('/fattureincloud/invoice', createInvoice);
-app.put('/fattureincloud/invoice/:invoiceId', updateInvoice);
-app.delete('/fattureincloud/invoice/:invoiceId', deleteInvoice);
+app.put('/fattureincloud/invoice/', updateInvoice);
+app.delete('/fattureincloud/invoice/', deleteInvoice);
 
 app.listen(port, () => {
   console.log(`AG Lens services listening at http://localhost:${port}`);
