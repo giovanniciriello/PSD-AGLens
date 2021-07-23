@@ -127,7 +127,7 @@
     },
     "/fattureincloud/invoice": {
       "post": {
-        "summary": "Create a new shipping order.",
+        "summary": "Create a new invoice issue.",
         "tags": [
           "Fatture in cloud"
         ],
@@ -156,7 +156,9 @@
             "description": "Service Unavailable"
           }
         }
-      },
+      }
+    },
+    "/fattureincloud/invoice/{invoiceId}": {
       "get": {
         "summary": "Returns invoice pdf.",
         "tags": [
@@ -164,7 +166,7 @@
         ],
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "invoiceId",
             "required": true,
             "schema": {
@@ -190,13 +192,13 @@
         }
       },
       "put": {
-        "summary": "Update a shipping order.",
+        "summary": "Update a invoice issue.",
         "tags": [
           "Fatture in cloud"
         ],
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "invoiceId",
             "required": true,
             "schema": {
@@ -237,7 +239,7 @@
         ],
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "invoiceId",
             "required": true,
             "schema": {

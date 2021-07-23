@@ -32,7 +32,7 @@ exports.createInvoice = (req, res) => {
     footer: {
       text: 'Thanks for choose us!',
     },
-    currency_symbol: '$',
+    currency_symbol: '€',
     date: {
       billing_date: '23 July 2020',
       due_date: '23 August 2021',
@@ -40,31 +40,31 @@ exports.createInvoice = (req, res) => {
   };
   niceInvoice(invoiceDetail, './apis/fatture_pdf/' + id + '.pdf');
 
-  console.log(`Invoice id -> ${id}`);
+  console.log(`✅ Invoice successfull generated! Invoice id -> ${id}`);
 
   res.json({
     success: true,
     id: id,
-    message: '✅ Invoice successfull generated!'
+    message: '✅ Invoice successfull generated!',
   });
 };
 
 exports.getInvoiceById = (req, res) => {
   res.setHeader('Content-Type', 'application/pdf');
-  res.setHeader('Content-Disposition', 'attachment; filename='+ req.query.invoiceId + '.pdf');
-  res.sendFile('/fatture_pdf/' + req.query.invoiceId + '.pdf', { root: __dirname });
+  res.setHeader('Content-Disposition', 'attachment; filename=' + req.params.invoiceId + '.pdf');
+  res.sendFile('/fatture_pdf/' + req.params.invoiceId + '.pdf', { root: __dirname });
 };
 
 exports.updateInvoice = (req, res) => {
   res.json({
     success: true,
-    id: req.query.invoiceId,
-    message: '✅ Update ok!'
+    id: req.params.invoiceId,
+    message: '✅ Update ok!',
   });
 };
 exports.deleteInvoice = (req, res) => {
   res.json({
     success: true,
-    message: '✅ Delete ok!'
+    message: '✅ Delete ok!',
   });
 };

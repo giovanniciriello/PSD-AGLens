@@ -101,12 +101,14 @@ paths:
                 $ref: '#/components/schemas/CreateInvoiceResponse'
         '503':
           description: Service Unavailable
+
+  /fattureincloud/invoice/{invoiceId}:
     get:
       summary: Returns invoice pdf.
       tags:
         - Fatture in cloud
       parameters:
-        - in: query
+        - in: path
           name: invoiceId
           required: true
           schema:
@@ -122,13 +124,13 @@ paths:
 
         '503':
           description: Service Unavailable
-          
+
     put:
       summary: Update a shipping order.
       tags:
         - Fatture in cloud
       parameters:
-        - in: query
+        - in: path
           name: invoiceId
           required: true
           schema:
@@ -148,13 +150,13 @@ paths:
                 $ref: '#/components/schemas/UpdateInvoiceResponse'
         '503':
           description: Service Unavailable
-          
+
     delete:
       summary: Delete an invoice
       tags:
         - Fatture in cloud
       parameters:
-        - in: query
+        - in: path
           name: invoiceId
           required: true
           schema:
@@ -292,7 +294,7 @@ components:
         success: true
         id: 19743
         message: Order ok!
-        
+
     UpdateInvoiceRequest:
       type: object
       required:
@@ -329,7 +331,7 @@ components:
         success: true
         id: 19743
         message: Update ok!
-        
+
     DeleteInvoiceResponse:
       type: object
       required:

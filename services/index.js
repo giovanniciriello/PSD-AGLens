@@ -14,15 +14,14 @@ app.use(bodyParser.json());
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 app.get('/framesupplier/availability/:frameId', checkFrameAvailability);
-
 app.post('/framesupplier/order', createFrameOrder);
 
 app.post('/paclink/order', createShippingOrder);
 
-app.get('/fattureincloud/invoice/', getInvoiceById);
+app.get('/fattureincloud/invoice/:invoiceId', getInvoiceById);
 app.post('/fattureincloud/invoice', createInvoice);
-app.put('/fattureincloud/invoice/', updateInvoice);
-app.delete('/fattureincloud/invoice/', deleteInvoice);
+app.put('/fattureincloud/invoice/:invoiceId', updateInvoice);
+app.delete('/fattureincloud/invoice/:invoiceId', deleteInvoice);
 
 app.listen(port, () => {
   console.log(`AG Lens services listening at http://localhost:${port}`);

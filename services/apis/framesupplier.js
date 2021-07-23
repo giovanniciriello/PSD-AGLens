@@ -1,6 +1,8 @@
 exports.checkFrameAvailability = (req, res) => {
   const frameId = req.params.frameId;
 
+  console.log('🔎 Looking for frame ' + frameId);
+
   if (framesDatabase.hasOwnProperty(frameId)) {
     // frame is avaialble in supplier warehouse.
     // Response with eyeglass data
@@ -15,6 +17,8 @@ exports.checkFrameAvailability = (req, res) => {
 };
 
 exports.createFrameOrder = (req, res) => {
+  console.log('✅ Order created successfully');
+
   res.json({
     success: true,
     message: '✅ Order created successfully',
